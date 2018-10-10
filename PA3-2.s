@@ -42,8 +42,7 @@ main:
                       @and put result in R1
     LDR R0, =msg6     @Final message
     BL printf
-    MOV R7, #1        @Normal exit
-    SWI #0
+
 
 @CHOCOLATE
     CMP R1, #2        @Check for "chocolate"
@@ -54,8 +53,6 @@ main:
                       @and put result in R1
     LDR R0, =msg6     @Final message
     BL printf
-    MOV R7, #1        @Normal exit
-    SWI #0
 
 @PRETZELS
     CMP R1, #3        @Check for "pretzels"
@@ -66,10 +63,8 @@ main:
                       @and put result in R1
     LDR R0, =msg6     @Final message
     BL printf
-    MOV R7, #1        @Normal exit
-    SWI #0
 
-
+@ILLEGAL SELECTION
     LDR R0, =msg7    @If we get here user entered
                      @an illegal selection so print
                      @error message and terminate
