@@ -33,30 +33,15 @@ main:
 
     @Your modifications will begin at this point
 
-@PEANUTS
+@Identify item
     CMP R1, #1        @Check for "peanuts"
     MOVEQ R3, #75     @Move 75 cents into R3 if R1 is equal to #1
-    LDR R4, =quantity @Get address of var quantity
-    LDR R4, [R4]      @Value of quantity now in R4
-    MUL R1, R3, R4    @Multiply number of cents times quantity
-                      @and put result in R1
-    LDR R0, =msg6     @Final message
-    BL printf
-
-
-@CHOCOLATE
     CMP R1, #2        @Check for "chocolate"
-    MOVEQ R3, #125    @Move 125 cents into R3
-    LDR R4, =quantity @Get address of var quantity
-    LDR R4, [R4]      @Value of quantity now in R4
-    MUL R1, R3, R4    @Multiply number of cents times quantity
-                      @and put result in R1
-    LDR R0, =msg6     @Final message
-    BL printf
-
-@PRETZELS
+    MOVEQ R3, #125    @Move 125 cents into R3 if R1 is equal to #2
     CMP R1, #3        @Check for "pretzels"
-    MOVEQ R3, #90     @Move 90 cents into R3
+    MOVEQ R3, #90     @Move 90 cents into R3 if R1 is equal to #3
+
+@Compute
     LDR R4, =quantity @Get address of var quantity
     LDR R4, [R4]      @Value of quantity now in R4
     MUL R1, R3, R4    @Multiply number of cents times quantity
@@ -65,7 +50,8 @@ main:
     BL printf
 
 @ILLEGAL SELECTION
-    LDR R0, =msg7    @If we get here user entered
+    CMP R1,#3
+    LDRGT R0, =msg7    @If we get here user entered
                      @an illegal selection so print
                      @error message and terminate
     BL printf
