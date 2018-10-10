@@ -41,6 +41,13 @@ main:
     CMP R1, #3        @Check for "pretzels"
     MOVEQ R3, #90     @Move 90 cents into R3 if R1 is equal to #3
 
+@Illegal  selection
+    CMP R1,#3
+    LDR R0, =msg7  @If we get here user entered
+                     @an illegal selection so print
+                     @error message and terminate
+    BLGT printf
+
 @Compute
     LDR R4, =quantity @Get address of var quantity
     LDR R4, [R4]      @Value of quantity now in R4
@@ -49,12 +56,7 @@ main:
     LDR R0, =msg6     @Final message
     BL printf
 
-@ILLEGAL SELECTION
-    CMP R1,#3
-    LDRGT R0, =msg7    @If we get here user entered
-                     @an illegal selection so print
-                     @error message and terminate
-    BL printf
+@Exit Program
     MOV R7, #1
     SWI #0           @Terminate, error condition
 
