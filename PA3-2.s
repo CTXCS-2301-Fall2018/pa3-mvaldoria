@@ -43,7 +43,7 @@ main:
 
 @Illegal  selection
     CMP R1,#3
-    LDR R0, =msg7  @If we get here user entered
+    LDRGT R0, =msg7  @If we get here user entered
                      @an illegal selection so print
                      @error message and terminate
     BLGT printf
