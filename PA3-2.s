@@ -1,4 +1,6 @@
-@Vending machine code
+@ Marc Valdoria
+@ Vending machine code
+@ 10/12/18
 
     .global main
     .extern printf
@@ -42,9 +44,10 @@ main:
     MOVEQ R3, #90     @Move 90 cents into R3 if R1 is equal to #3
 
 @Illegal  selection
-    CMP R1,#3
+    CMP R1,#3        @Check if R1 is #3
     LDRGT R0, =msg7  @If we get here user entered
-                     @an illegal selection so print
+                     @a number greater than #3, which
+                     @is an illegal selection so print
                      @error message and terminate
     BLGT printf
 
